@@ -14,7 +14,13 @@ import {
   useColorModeValue,
   Image,
 } from "@chakra-ui/react";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
@@ -26,10 +32,6 @@ const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const [showVideo, setShowVideo] = useState(false);
-
-  const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
-  const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -41,21 +43,73 @@ const Hero: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowVideo(true);
-    }, 3000); // Show placeholder for 3 seconds
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const isDarkMode = useColorModeValue(false, true);
+  const [direction, setDirection] = useState(0);
 
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % 4;
+        setDirection(nextIndex === 0 ? -1 : 1); // Change direction when looping back to the first image
+        return nextIndex;
+      });
+    }, 4500);
+
+    return () => clearInterval(interval);
   }, []);
+
+  const images = isDarkMode
+    ? [
+        "screenshot-dark-1.png",
+        "screenshot-dark-2.png",
+        "screenshot-dark-3.png",
+        "screenshot-dark-4.png",
+      ]
+    : [
+        "screenshot-light-1.png",
+        "screenshot-light-2.png",
+        "screenshot-light-3.png",
+        "screenshot-light-4.png",
+      ];
+
+  const getVariants = (index: number) => {
+    switch (index) {
+      case 0: // screenshot-1 to screenshot-2 (bottom to top)
+        return {
+          enter: { y: "100%", opacity: 0 },
+          center: { y: 0, opacity: 1 },
+          exit: { y: "-100%", opacity: 0 },
+        };
+      case 1: // screenshot-1 to screenshot-2 (right to left)
+        return {
+          enter: { y: "100%", opacity: 0 },
+          center: { y: 0, opacity: 1 },
+          exit: { x: "-100%", opacity: 0 },
+        };
+      case 2: // screenshot-3 to screenshot-4 (right to left)
+        return {
+          enter: { x: "100%", opacity: 0 },
+          center: { x: 0, opacity: 1 },
+          exit: { x: "-100%", opacity: 0 },
+        };
+      case 3: // screenshot-4 to screenshot-1 (top to bottom)
+        return {
+          enter: { x: "100%", opacity: 0 },
+          center: { x: 0, opacity: 1 },
+          exit: { y: "100%", opacity: 0 },
+        };
+      default:
+        return {};
+    }
+  };
 
   return (
     <Box
-      bg={useColorModeValue("gray.100", "gray.800")}
+      bg={useColorModeValue("rgba(255,255,255,0.8)", "rgba(0,0,0,0.6)")}
       backgroundSize="cover"
       backgroundPosition="center"
       backgroundAttachment="fixed"
-      py={20}
     >
       <Box
         bg={useColorModeValue("rgba(255,255,255,0.8)", "rgba(0,0,0,0.6)")}
@@ -154,6 +208,7 @@ const Hero: React.FC = () => {
                 borderRadius="40px"
                 overflow="hidden"
                 transform="perspective(1000px) rotateY(-10deg) rotateX(5deg)"
+                boxShadow="0 0 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.4)"
                 _before={{
                   content: '""',
                   position: "absolute",
@@ -165,39 +220,48 @@ const Hero: React.FC = () => {
                     "linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0))",
                   transform: "rotate(-45deg)",
                   pointerEvents: "none",
+                  zIndex: 1,
                 }}
-                boxShadow="0 0 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.4)"
+                _after={{
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  boxShadow:
+                    "0 0 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(255, 255, 255, 0.7)",
+                  opacity: 0,
+                  transition: "opacity 0.3s ease-in-out",
+                  zIndex: 2,
+                }}
+                transition="box-shadow 0.3s ease-in-out"
                 _hover={{
                   boxShadow:
                     "0 0 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(255, 255, 255, 0.7)",
+                  // transition: "opacity 0.3s ease-in-out",
+                  // "&::after": {
+                  //   opacity: 1,
+                  // },
                 }}
-                transition="box-shadow 0.3s ease-in-out"
               >
-                {showVideo ? (
-                  <iframe
-                    src="https://www.youtube.com/embed/f_p1tvkdfmc?autoplay=1&loop=1&playlist=f_p1tvkdfmc&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                ) : (
-                  <Image
-                    src="https://img.youtube.com/vi/f_p1tvkdfmc/maxresdefault.jpg"
-                    alt="Video thumbnail"
+                <AnimatePresence initial={false} custom={currentImageIndex}>
+                  <MotionImage
+                    key={currentImageIndex}
+                    src={images[currentImageIndex]}
+                    alt={`Featured image ${currentImageIndex + 1}`}
                     objectFit="cover"
-                    width="100%"
-                    height="100%"
+                    // width="100%"
+                    // height="100%"
+                    position="absolute"
+                    custom={currentImageIndex}
+                    variants={getVariants(currentImageIndex)}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
                   />
-                )}
+                </AnimatePresence>
               </Box>
             </MotionBox>
           </Flex>
