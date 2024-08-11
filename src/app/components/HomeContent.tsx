@@ -14,7 +14,6 @@ export default function HomeContent() {
   return (
     <>
       <Hero />
-      <Testimonials />
       <FeatureSection
         title="Real-time Analytics"
         description="Get instant insights into your newsletter's performance. Track opens, clicks, and subscriber growth in real-time."
@@ -37,6 +36,7 @@ export default function HomeContent() {
           isDarkMode ? "/screenshot-dark-1.png" : "/screenshot-light-1.png"
         }
       />
+      <Testimonials />
     </>
   );
 }

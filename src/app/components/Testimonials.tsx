@@ -66,7 +66,7 @@ const Testimonials: React.FC = () => {
           textAlign="center"
           color={useColorModeValue("gray.700", "gray.100")}
         >
-          First User Opinion
+          What users say
         </Heading>
         <Flex justify="center" wrap="wrap" gap={8}>
           <Testimonial
