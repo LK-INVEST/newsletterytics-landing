@@ -134,6 +134,7 @@ const Hero: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/subscribe", {
@@ -153,6 +154,7 @@ const Hero: React.FC = () => {
           isClosable: true,
         });
         setEmail("");
+        setName("");
       } else {
         throw new Error("Subscription failed");
       }
@@ -166,6 +168,8 @@ const Hero: React.FC = () => {
         duration: 5000,
         isClosable: true,
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -274,31 +278,32 @@ const Hero: React.FC = () => {
                 />
 
                 <Button
-                  as="a"
                   variant="solid"
                   width="100%"
                   type="submit"
                   isLoading={isSubmitting}
                   colorScheme="brand"
                   fontWeight="bold"
-                  _hover={{ transform: "scale(1.05)" }}
                   transition="all 0.2s"
+                  cursor="pointer"
                   bg={useColorModeValue("brand.500", "brand.500")}
                   color={useColorModeValue("white", "white")}
+                  _hover={{
+                    transform: "scale(1.05)",
+                    animation: "pulseAndShake 0.5s",
+                  }}
                   _dark={{
                     _hover: {
                       bg: "brand.600",
+                      animation: "pulseAndShake 0.5s",
                     },
                   }}
-                  animation="pulseAndShake 5s infinite"
                   sx={{
                     "@keyframes pulseAndShake": {
-                      "0%, 100%": { transform: "scale(1)" },
-                      "10%": { transform: "scale(1.05) rotate(1deg)" },
-                      "20%": { transform: "scale(1.05) rotate(-1deg)" },
-                      "30%": { transform: "scale(1.05) rotate(1deg)" },
-                      "40%": { transform: "scale(1)" },
-                      "50%, 100%": { transform: "scale(1)" },
+                      "0%, 100%": { transform: "scale(1.05)" },
+                      "25%": { transform: "scale(1.05) rotate(1deg)" },
+                      "50%": { transform: "scale(1.05) rotate(-1deg)" },
+                      "75%": { transform: "scale(1.05) rotate(1deg)" },
                     },
                   }}
                 >
