@@ -18,7 +18,7 @@ const theme = extendTheme({
     body: "var(--font-montserrat)",
   },
   config: {
-    initialColorMode: "light",
+    initialColorMode: "dark",
     useSystemColorMode: false,
   },
   styles: {
