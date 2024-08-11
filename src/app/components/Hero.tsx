@@ -13,6 +13,8 @@ import {
   Flex,
   useColorModeValue,
   Image,
+  Input,
+  useToast,
 } from "@chakra-ui/react";
 import {
   motion,
@@ -27,6 +29,7 @@ const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 const MotionButton = motion(Button);
 const MotionImage = motion(Image);
+const MotionInput = motion(Input);
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -104,6 +107,68 @@ const Hero: React.FC = () => {
     }
   };
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const toast = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   // TODO: Implement the actual submission to Beehiiv API
+  //   // This is a placeholder for the API call
+  //   try {
+  //     // await submitToBeehiiv(name, email);
+  //     setSubmitStatus("success");
+  //     setName("");
+  //     setEmail("");
+  //   } catch (error) {
+  //     setSubmitStatus("error");
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "🔥You're in",
+          description: "Check your inbox for the good stuff!",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        setEmail("");
+      } else {
+        throw new Error("Subscription failed");
+      }
+    } catch (error) {
+      console.error("Subscription error occurred");
+      toast({
+        title: "Subscription failed",
+        description:
+          "There was an error signing up for the list. Please try again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <Box
       bg={useColorModeValue("rgba(255,255,255,0.8)", "rgba(0,0,0,0.6)")}
@@ -113,7 +178,7 @@ const Hero: React.FC = () => {
     >
       <Box
         bg={useColorModeValue("rgba(255,255,255,0.8)", "rgba(0,0,0,0.6)")}
-        minHeight="80vh"
+        minHeight="60vh"
         display="flex"
         alignItems="center"
       >
@@ -153,46 +218,127 @@ const Hero: React.FC = () => {
               >
                 YOUR BEEHIIV NEWSLETTER STATS, RIGHT IN YOUR POCKET
               </MotionText>
-              <MotionButton
-                as="a"
-                href="#" // Replace with actual App Store link
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                height="44px"
-                minWidth="156px"
-                backgroundColor="black"
-                color="white"
-                _hover={{ backgroundColor: "gray.800" }}
-                borderRadius="8px"
-                display="inline-flex"
+              <MotionBox
+                as="form"
+                onSubmit={handleSubmit}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                display="flex"
+                flexDirection="column"
                 alignItems="center"
-                justifyContent="center"
-                fontWeight="medium"
-                fontSize="md"
-                leftIcon={<AppleIcon />}
-                px={4}
+                width="100%"
+                maxWidth="400px"
               >
-                Download on the
-                <Box
-                  as="span"
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="flex-start"
-                  ml={2}
+                <MotionInput
+                  type="text"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  mb={4}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  bg={useColorModeValue("white", "gray.800")}
+                  color={useColorModeValue("gray.800", "white")}
+                  borderColor={useColorModeValue("gray.300", "gray.600")}
+                  _hover={{
+                    borderColor: useColorModeValue("brand.500", "brand.300"),
+                  }}
+                  _focus={{
+                    borderColor: useColorModeValue("brand.500", "brand.300"),
+                    boxShadow: "outline",
+                  }}
+                />
+                <MotionInput
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  mb={6}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  bg={useColorModeValue("white", "gray.800")}
+                  color={useColorModeValue("gray.800", "white")}
+                  borderColor={useColorModeValue("gray.300", "gray.600")}
+                  _hover={{
+                    borderColor: useColorModeValue("brand.500", "brand.300"),
+                  }}
+                  _focus={{
+                    borderColor: useColorModeValue("brand.500", "brand.300"),
+                    boxShadow: "outline",
+                  }}
+                />
+
+                <Button
+                  as="a"
+                  variant="solid"
+                  width="100%"
+                  type="submit"
+                  isLoading={isSubmitting}
+                  colorScheme="brand"
+                  fontWeight="bold"
+                  _hover={{ transform: "scale(1.05)" }}
+                  transition="all 0.2s"
+                  bg={useColorModeValue("brand.500", "brand.500")}
+                  color={useColorModeValue("white", "white")}
+                  _dark={{
+                    _hover: {
+                      bg: "brand.600",
+                    },
+                  }}
+                  animation="pulseAndShake 5s infinite"
+                  sx={{
+                    "@keyframes pulseAndShake": {
+                      "0%, 100%": { transform: "scale(1)" },
+                      "10%": { transform: "scale(1.05) rotate(1deg)" },
+                      "20%": { transform: "scale(1.05) rotate(-1deg)" },
+                      "30%": { transform: "scale(1.05) rotate(1deg)" },
+                      "40%": { transform: "scale(1)" },
+                      "50%, 100%": { transform: "scale(1)" },
+                    },
+                  }}
                 >
-                  <Text fontSize="xs" fontWeight="normal">
-                    App Store
-                  </Text>
-                </Box>
-              </MotionButton>
+                  Join Waitlist
+                </Button>
+              </MotionBox>
+              <AnimatePresence>
+                {submitStatus === "success" && (
+                  <MotionText
+                    color="green.500"
+                    fontWeight="bold"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    🔥 You're in. Check your inbox for the good stuff!
+                  </MotionText>
+                )}
+                {submitStatus === "error" && (
+                  <MotionText
+                    color="red.500"
+                    fontWeight="bold"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    An error occurred. Please try again.
+                  </MotionText>
+                )}
+              </AnimatePresence>
             </VStack>
 
             <MotionBox
               ref={containerRef}
               position="relative"
-              width={{ base: "80%", md: "40%" }}
+              width={{ base: "50%", md: "35%" }}
               height="0"
-              paddingBottom={{ base: "160%", md: "80%" }}
+              paddingBottom={{ base: "100%", md: "70%" }}
               mt={{ base: 8, md: 0 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -205,10 +351,10 @@ const Hero: React.FC = () => {
                 left="0"
                 right="0"
                 bottom="0"
-                borderRadius="40px"
+                borderRadius="30px"
                 overflow="hidden"
                 transform="perspective(1000px) rotateY(-10deg) rotateX(5deg)"
-                boxShadow="0 0 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.4)"
+                boxShadow="0 0 15px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.3)"
                 _before={{
                   content: '""',
                   position: "absolute",
@@ -239,10 +385,6 @@ const Hero: React.FC = () => {
                 _hover={{
                   boxShadow:
                     "0 0 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(255, 255, 255, 0.7)",
-                  // transition: "opacity 0.3s ease-in-out",
-                  // "&::after": {
-                  //   opacity: 1,
-                  // },
                 }}
               >
                 <AnimatePresence initial={false} custom={currentImageIndex}>
@@ -251,8 +393,6 @@ const Hero: React.FC = () => {
                     src={images[currentImageIndex]}
                     alt={`Featured image ${currentImageIndex + 1}`}
                     objectFit="cover"
-                    // width="100%"
-                    // height="100%"
                     position="absolute"
                     custom={currentImageIndex}
                     variants={getVariants(currentImageIndex)}

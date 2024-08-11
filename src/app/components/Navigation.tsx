@@ -37,7 +37,7 @@ const Navigation: React.FC = () => {
           </Box>
         </Link>
         <Flex alignItems="center">
-          <Link href="/about" passHref>
+          <Link href="/about" passHref legacyBehavior>
             <Button
               as="a"
               variant="ghost"
@@ -47,7 +47,7 @@ const Navigation: React.FC = () => {
               About
             </Button>
           </Link>
-          <Link href="/special-offer" passHref>
+          <Link href="/special-offer" passHref legacyBehavior>
             <Button
               as="a"
               variant="solid"
@@ -75,7 +75,7 @@ const Navigation: React.FC = () => {
                 },
               }}
             >
-              Special Offer!
+              Get Free Premium
             </Button>
           </Link>
           <Button onClick={toggleColorMode} variant="ghost">

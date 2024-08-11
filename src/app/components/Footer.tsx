@@ -10,7 +10,9 @@ import {
   Text,
   Link,
   useColorModeValue,
+  IconButton,
 } from "@chakra-ui/react";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
   return (
@@ -27,17 +29,29 @@ const Footer: React.FC = () => {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Text>© 2024 Newsletterytics. All rights reserved</Text>
-        <Stack direction="row" spacing={6}>
-          <Link href="#" color={useColorModeValue("brand.500", "brand.300")}>
+        <Text>© 2024 Newsletterytics by Paweł Karniej</Text>
+        <Stack direction="row" spacing={6} align="center">
+          <Link
+            href="/privacypolicy"
+            color={useColorModeValue("brand.500", "brand.300")}
+          >
             Privacy Policy
           </Link>
-          <Link href="#" color={useColorModeValue("brand.500", "brand.300")}>
-            Terms of Service
+          <Link
+            href="/contact"
+            color={useColorModeValue("brand.500", "brand.300")}
+          >
+            Contact
           </Link>
-          <Link href="#" color={useColorModeValue("brand.500", "brand.300")}>
-            Contact Us
-          </Link>
+          <IconButton
+            as="a"
+            href="https://x.com/pawelkarniej"
+            aria-label="X (Twitter) Profile"
+            icon={<FaXTwitter />}
+            size="sm"
+            colorScheme="gray"
+            variant="ghost"
+          />
         </Stack>
       </Container>
     </Box>

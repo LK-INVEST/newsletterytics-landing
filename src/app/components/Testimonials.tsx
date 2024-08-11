@@ -44,7 +44,7 @@ const Testimonial: React.FC<TestimonialProps> = ({
       mb={4}
       color={useColorModeValue("gray.600", "gray.200")}
     >
-      "{content}"
+      &ldquo;{content}&rdquo;
     </Text>
     <Flex align="center">
       <Avatar src={avatar} mr={4} />
@@ -66,15 +66,15 @@ const Testimonials: React.FC = () => {
           textAlign="center"
           color={useColorModeValue("gray.700", "gray.100")}
         >
-          What Our Users Say
+          First User Opinion
         </Heading>
         <Flex justify="center" wrap="wrap" gap={8}>
           <Testimonial
-            content="Newsletterytics has completely transformed how I manage my newsletter. The insights are invaluable!"
-            author="Jane Doe"
-            avatar="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80"
+            content="very cool"
+            author="Ej from beehiiv"
+            avatar="https://pbs.twimg.com/profile_images/1722741086249218048/zAMRNTk7_400x400.jpg"
           />
-          <Testimonial
+          {/* <Testimonial
             content="I love how easy it is to track my newsletter's performance on the go. Great app!"
             author="John Smith"
             avatar="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80"
@@ -83,7 +83,7 @@ const Testimonials: React.FC = () => {
             content="The real-time stats have helped me make data-driven decisions to grow my audience."
             author="Emily Johnson"
             avatar="https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80"
-          />
+          /> */}
         </Flex>
       </Container>
     </Box>
