@@ -22,16 +22,11 @@ const Navigation: React.FC = () => {
     md: "Get Free Premium",
   });
   const showAbout = useBreakpointValue({ base: false, sm: true });
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.600", "gray.300");
 
   return (
-    <Box
-      bg={useColorModeValue("white", "gray.800")}
-      px={4}
-      shadow="sm"
-      position="sticky"
-      top={0}
-      zIndex={10}
-    >
+    <Box bg={bg} px={4} shadow="sm" position="sticky" top={0} zIndex={10}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <Link href="/" passHref>
           <Box
@@ -51,7 +46,7 @@ const Navigation: React.FC = () => {
                 variant="ghost"
                 mr={2}
                 fontSize={{ base: "sm", md: "md" }}
-                color={useColorModeValue("gray.600", "gray.300")}
+                color={color}
               >
                 About
               </Button>
@@ -69,8 +64,8 @@ const Navigation: React.FC = () => {
               py={{ base: 1, sm: 2 }}
               _hover={{ transform: "scale(1.05)" }}
               transition="all 0.2s"
-              bg={useColorModeValue("brand.500", "brand.500")}
-              color={useColorModeValue("white", "white")}
+              bg="brand.500"
+              color="white"
               _dark={{
                 _hover: {
                   bg: "brand.600",
