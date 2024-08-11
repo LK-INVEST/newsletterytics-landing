@@ -123,7 +123,7 @@ const PrivacyPolicy = () => {
               functionality of the app.
               <br />
               • To Improve Services: We analyze usage and analytics data to
-              improve the app's functionality and user experience.
+              improve the app&apos;s functionality and user experience.
               <br />
               • To Communicate with You: We may use your contact information to
               send you updates, security alerts, and support and administrative
@@ -182,7 +182,7 @@ const PrivacyPolicy = () => {
               within the app.
               <br />
               • Location Data: You can disable location services in your
-              device's settings at any time.
+              device&apos;s settings at any time.
               <br />
               • Communications: You can opt-out of receiving promotional
               communications from us by following the instructions in those
@@ -195,7 +195,7 @@ const PrivacyPolicy = () => {
 
           <MotionBox variants={itemVariants}>
             <Heading as="h2" size="lg" mb={2}>
-              7. Children's Privacy
+              7. Children&apos;s Privacy
             </Heading>
             <Text color={textColor}>
               Our app does not address anyone under the age of 13. We do not

@@ -315,7 +315,7 @@ const Hero: React.FC = () => {
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.3 }}
                   >
-                    🔥 You're in. Check your inbox for the good stuff!
+                    🔥 You&apos;re in. Check your inbox for the good stuff!
                   </MotionText>
                 )}
                 {submitStatus === "error" && (
