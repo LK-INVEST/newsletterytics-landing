@@ -9,12 +9,19 @@ import {
   Button,
   useColorMode,
   useColorModeValue,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 
 const Navigation: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const buttonText = useBreakpointValue({
+    base: "Premium",
+    sm: "Free Premium",
+    md: "Get Free Premium",
+  });
+  const showAbout = useBreakpointValue({ base: false, sm: true });
 
   return (
     <Box
@@ -29,7 +36,7 @@ const Navigation: React.FC = () => {
         <Link href="/" passHref>
           <Box
             fontWeight="bold"
-            fontSize="xl"
+            fontSize={{ base: "lg", md: "xl" }}
             color="brand.500"
             cursor="pointer"
           >
@@ -37,23 +44,29 @@ const Navigation: React.FC = () => {
           </Box>
         </Link>
         <Flex alignItems="center">
-          <Link href="/about" passHref legacyBehavior>
-            <Button
-              as="a"
-              variant="ghost"
-              mr={3}
-              color={useColorModeValue("gray.600", "gray.300")}
-            >
-              About
-            </Button>
-          </Link>
+          {showAbout && (
+            <Link href="/about" passHref legacyBehavior>
+              <Button
+                as="a"
+                variant="ghost"
+                mr={2}
+                fontSize={{ base: "sm", md: "md" }}
+                color={useColorModeValue("gray.600", "gray.300")}
+              >
+                About
+              </Button>
+            </Link>
+          )}
           <Link href="/special-offer" passHref legacyBehavior>
             <Button
               as="a"
               variant="solid"
               colorScheme="brand"
-              mr={3}
+              mr={2}
               fontWeight="bold"
+              fontSize={{ base: "xs", sm: "sm", md: "md" }}
+              px={{ base: 2, sm: 3, md: 4 }}
+              py={{ base: 1, sm: 2 }}
               _hover={{ transform: "scale(1.05)" }}
               transition="all 0.2s"
               bg={useColorModeValue("brand.500", "brand.500")}
@@ -75,10 +88,10 @@ const Navigation: React.FC = () => {
                 },
               }}
             >
-              Get Free Premium
+              {buttonText}
             </Button>
           </Link>
-          <Button onClick={toggleColorMode} variant="ghost">
+          <Button onClick={toggleColorMode} variant="ghost" p={1}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
         </Flex>

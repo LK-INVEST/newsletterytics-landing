@@ -185,28 +185,31 @@ const Hero: React.FC = () => {
         minHeight="60vh"
         display="flex"
         alignItems="center"
+        pt={{ base: 8, md: 0 }}
       >
-        <Container maxW="container.xl">
+        <Container maxW="container.xl" px={{ base: 4, sm: 6, md: 8 }}>
           <Flex
             direction={{ base: "column", md: "row" }}
             align="center"
             justify="space-between"
           >
             <VStack
-              spacing={8}
+              spacing={{ base: 4, md: 8 }}
               align={{ base: "center", md: "flex-start" }}
               textAlign={{ base: "center", md: "left" }}
+              w="100%"
             >
               <MotionHeading
                 as="h1"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
                 fontWeight="extrabold"
                 color={useColorModeValue("brand.600", "brand.400")}
                 textTransform="uppercase"
                 letterSpacing="wide"
+                mb={{ base: 2, md: 0 }}
               >
                 NEWSLETTERYTICS
               </MotionHeading>
@@ -232,7 +235,7 @@ const Hero: React.FC = () => {
                 flexDirection="column"
                 alignItems="center"
                 width="100%"
-                maxWidth="400px"
+                maxWidth={{ base: "100%", sm: "400px" }}
               >
                 <MotionInput
                   type="text"
