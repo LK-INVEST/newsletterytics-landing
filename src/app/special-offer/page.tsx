@@ -71,8 +71,9 @@ export default function SpecialOffer() {
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
       minH="calc(100vh - 64px)"
+      px={4}
     >
-      <Container maxW="container.xl" py={16}>
+      <Container maxW="container.lg" py={16}>
         <VStack spacing={12} align="stretch">
           <MotionHeading
             as="h1"
@@ -106,7 +107,7 @@ export default function SpecialOffer() {
           >
             <Card>
               <CardHeader>
-                <Heading as="h2" size="lg">
+                <Heading as="h2" size="lg" textAlign="center">
                   How to Claim Your Free Premium Access:
                 </Heading>
               </CardHeader>
@@ -160,7 +161,22 @@ export default function SpecialOffer() {
               bg="brand.500"
               color="white"
               _hover={{
-                bg: "brand.600",
+                transform: "scale(1.05)",
+                animation: "pulseAndShake 0.5s",
+              }}
+              _dark={{
+                _hover: {
+                  bg: "brand.600",
+                  animation: "pulseAndShake 0.5s",
+                },
+              }}
+              sx={{
+                "@keyframes pulseAndShake": {
+                  "0%, 100%": { transform: "scale(1.05)" },
+                  "25%": { transform: "scale(1.05) rotate(1deg)" },
+                  "50%": { transform: "scale(1.05) rotate(-1deg)" },
+                  "75%": { transform: "scale(1.05) rotate(1deg)" },
+                },
               }}
               rightIcon={<ChevronRightIcon />}
               whileHover={{ scale: 1.05 }}
@@ -170,35 +186,44 @@ export default function SpecialOffer() {
             </MotionButton>
           </Box>
 
-          <Alert
-            status="info"
-            variant="subtle"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            textAlign="center"
-            borderRadius="md"
+          <MotionBox
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <AlertIcon boxSize="40px" mr={0} />
-            <AlertTitle mt={4} mb={1} fontSize="lg">
-              Why Choose Newsletterytics Premium?
-            </AlertTitle>
-            <AlertDescription maxWidth="sm">
-              <List spacing={3} mt={4}>
-                {[
-                  "Advanced analytics and insights",
-                  "Unlimited newsletter tracking",
-                  "Custom HomeScreen widgets",
-                  "Early access to new features",
-                ].map((feature, index) => (
-                  <ListItem key={index}>
-                    <ListIcon as={CheckCircleIcon} color="green.500" />
-                    {feature}
-                  </ListItem>
-                ))}
-              </List>
-            </AlertDescription>
-          </Alert>
+            <Card alignItems="center" justifyContent="center">
+              <CardHeader>
+                <Heading as="h2" size="lg" textAlign="center">
+                  Why Choose Newsletterytics Premium?
+                </Heading>
+              </CardHeader>
+              <CardBody>
+                <List spacing={3}>
+                  {[
+                    "Advanced analytics and insights",
+                    "Unlimited newsletter tracking",
+                    "Custom HomeScreen widgets",
+                    "Early access to new features",
+                  ].map((feature, index) => (
+                    <ListItem
+                      py="1"
+                      key={index}
+                      display="flex"
+                      alignItems="center"
+                    >
+                      <ListIcon
+                        as={CheckCircleIcon}
+                        color="green.500"
+                        boxSize={5}
+                        mr={2}
+                      />
+                      <Text>{feature}</Text>
+                    </ListItem>
+                  ))}
+                </List>
+              </CardBody>
+            </Card>
+          </MotionBox>
 
           <MotionText
             fontSize="xl"

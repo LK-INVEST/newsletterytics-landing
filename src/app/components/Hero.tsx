@@ -187,7 +187,7 @@ const Hero: React.FC = () => {
         alignItems="center"
         pt={{ base: 8, md: 0 }}
       >
-        <Container maxW="container.xl" px={{ base: 4, sm: 6, md: 8 }}>
+        <Container maxW="container.xl">
           <Flex
             direction={{ base: "column", md: "row" }}
             align="center"
@@ -344,7 +344,7 @@ const Hero: React.FC = () => {
             <MotionBox
               ref={containerRef}
               position="relative"
-              width={{ base: "50%", md: "35%" }}
+              width={{ base: "50%" }}
               height="0"
               paddingBottom={{ base: "100%", md: "70%" }}
               mt={{ base: 8, md: 0 }}
