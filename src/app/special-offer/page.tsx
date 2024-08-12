@@ -92,8 +92,8 @@ export default function SpecialOffer() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             I&apos;m excited to offer you an exclusive opportunity to access all
-            premium features of Newsletterytics absolutely free for a full year!
-            Here&apos;s how it works:
+            premium features of Newsletterytics at no additional cost with
+            Beehiiv subscription!
           </MotionText>
 
           <MotionBox
@@ -104,7 +104,7 @@ export default function SpecialOffer() {
             <Card>
               <CardHeader>
                 <Heading as="h2" size="lg" textAlign="center">
-                  How to Claim Your Free Premium Access:
+                  Here&apos;s how it works:
                 </Heading>
               </CardHeader>
               <CardBody>
