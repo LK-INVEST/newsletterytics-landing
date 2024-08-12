@@ -24,7 +24,7 @@ import {
   AlertDescription,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { CheckCircleIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
@@ -40,30 +40,26 @@ const Step = ({
   title: string;
   description: string;
 }) => (
-  <Card>
-    <CardHeader>
-      <Heading size="md" display="flex" alignItems="center">
-        <Box
-          as="span"
-          mr={2}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          w={8}
-          h={8}
-          borderRadius="full"
-          bg="brand.500"
-          color="white"
-        >
-          {number}
-        </Box>
-        {title}
-      </Heading>
-    </CardHeader>
-    <CardBody>
-      <Text>{description}</Text>
-    </CardBody>
-  </Card>
+  <Box height="100%">
+    <Heading size="md" display="flex" alignItems="center" mb={2}>
+      <Box
+        as="span"
+        mr={2}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        w={8}
+        h={8}
+        borderRadius="full"
+        bg="brand.500"
+        color="white"
+      >
+        {number}
+      </Box>
+      {title}
+    </Heading>
+    <Text>{description}</Text>
+  </Box>
 );
 
 export default function SpecialOffer() {
@@ -95,9 +91,9 @@ export default function SpecialOffer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            We&apos;re excited to offer you an exclusive opportunity to access
-            all premium features of Newsletterytics absolutely free for a full
-            year! Here&apos;s how it works:
+            I&apos;m excited to offer you an exclusive opportunity to access all
+            premium features of Newsletterytics absolutely free for a full year!
+            Here&apos;s how it works:
           </MotionText>
 
           <MotionBox
@@ -115,16 +111,16 @@ export default function SpecialOffer() {
                 <Grid
                   templateColumns={{
                     base: "1fr",
-                    md: "repeat(2, 1fr)",
-                    lg: "repeat(4, 1fr)",
+                    md: "repeat(4, 1fr)",
                   }}
                   gap={6}
+                  alignItems="stretch"
                 >
                   <GridItem>
                     <Step
                       number={1}
                       title="Sign Up"
-                      description="Sign up for Beehiiv using our affiliate link"
+                      description="Sign up for Beehiiv using affiliate link below"
                     />
                   </GridItem>
                   <GridItem>
@@ -178,7 +174,6 @@ export default function SpecialOffer() {
                   "75%": { transform: "scale(1.05) rotate(1deg)" },
                 },
               }}
-              rightIcon={<ChevronRightIcon />}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

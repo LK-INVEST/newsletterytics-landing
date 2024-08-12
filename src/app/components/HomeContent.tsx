@@ -35,7 +35,7 @@ export default function HomeContent() {
       />
       <FeatureSection
         title="HomeScreen Widget"
-        description="Keep your key metrics at your fingertips with our customizable HomeScreen widget."
+        description="Keep your key metrics at your fingertips with a customizable HomeScreen widget."
         imageUrl={
           isDarkMode
             ? "mockup/screenshot-dark-1.png"

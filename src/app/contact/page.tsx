@@ -47,8 +47,8 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             I&apos;d love to hear from you! Whether you have a question about
-            our services, want to suggest a new feature, or just want to say
-            hello, I&apos;m all ears.
+            the app, want to suggest a new feature, or just want to say hello,
+            I&apos;m all ears.
           </MotionText>
           <MotionText
             fontSize="xl"

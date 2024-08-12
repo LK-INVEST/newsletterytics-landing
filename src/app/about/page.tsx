@@ -93,8 +93,8 @@ export default function About() {
                 color={useColorModeValue("gray.700", "gray.300")}
               >
                 Newsletterytics is your all-in-one solution for tracking and
-                optimizing your Beehiiv newsletters on the go. We&apos;ve
-                designed our app to empower newsletter creators with real-time
+                optimizing your Beehiiv newsletters on the go. I&apos;ve
+                designed the app to empower newsletter creators with real-time
                 insights and powerful analytics tools.
               </MotionText>
               <MotionText
@@ -182,7 +182,7 @@ export default function About() {
             />
             <Feature
               title="HomeScreen Widget"
-              description="Keep your key metrics at your fingertips with our customizable HomeScreen widget, ensuring you're always up-to-date with your newsletter's performance."
+              description="Keep your key metrics at your fingertips with a customizable HomeScreen widget, ensuring you're always up-to-date with your newsletter's performance."
               delay={1.2}
             />
             {/* <Feature
