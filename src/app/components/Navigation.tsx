@@ -17,9 +17,8 @@ import Link from "next/link";
 const Navigation: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const buttonText = useBreakpointValue({
-    base: "Premium",
-    sm: "Free Premium",
-    md: "Get Free Premium",
+    base: "Special Offer",
+    md: "Get Special Offer",
   });
   const showAbout = useBreakpointValue({ base: false, sm: true });
   const bg = useColorModeValue("white", "gray.800");
