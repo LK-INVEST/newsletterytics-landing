@@ -16,8 +16,9 @@ const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 
 const PrivacyPolicy = () => {
-  const bgColor = useColorModeValue("gray.50", "gray.900");
-  const textColor = useColorModeValue("gray.700", "gray.200");
+  const bgColor = useColorModeValue("white", "gray.900");
+  const textColor = useColorModeValue("gray.800", "gray.200");
+  const headingColor = useColorModeValue("gray.900", "gray.100");
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -64,16 +65,17 @@ const PrivacyPolicy = () => {
             textAlign="center"
             mb={6}
             variants={itemVariants}
+            color={headingColor}
           >
             Privacy Policy for Newsletterytics
           </MotionHeading>
 
-          <MotionText variants={itemVariants}>
+          <MotionText variants={itemVariants} color={textColor}>
             Effective Date: 19.07.2024
           </MotionText>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               1. Introduction
             </Heading>
             <Text color={textColor}>
@@ -86,7 +88,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               2. Information We Collect
             </Heading>
             <Text color={textColor}>
@@ -114,7 +116,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               3. How We Use Your Information
             </Heading>
             <Text color={textColor}>
@@ -134,7 +136,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               4. Sharing Your Information
             </Heading>
             <Text color={textColor}>
@@ -159,7 +161,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               5. Security of Your Information
             </Heading>
             <Text color={textColor}>
@@ -173,7 +175,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               6. Your Choices
             </Heading>
             <Text color={textColor}>
@@ -194,7 +196,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               7. Children&apos;s Privacy
             </Heading>
             <Text color={textColor}>
@@ -207,7 +209,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               8. Changes to This Privacy Policy
             </Heading>
             <Text color={textColor}>
@@ -221,7 +223,7 @@ const PrivacyPolicy = () => {
           </MotionBox>
 
           <MotionBox variants={itemVariants}>
-            <Heading as="h2" size="lg" mb={2}>
+            <Heading as="h2" size="lg" mb={2} color={headingColor}>
               9. Contact Us
             </Heading>
             <Text color={textColor}>
