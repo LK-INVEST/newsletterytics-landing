@@ -115,23 +115,6 @@ const Hero: React.FC = () => {
     "idle" | "success" | "error"
   >("idle");
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-  //   // TODO: Implement the actual submission to Beehiiv API
-  //   // This is a placeholder for the API call
-  //   try {
-  //     // await submitToBeehiiv(name, email);
-  //     setSubmitStatus("success");
-  //     setName("");
-  //     setEmail("");
-  //   } catch (error) {
-  //     setSubmitStatus("error");
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);

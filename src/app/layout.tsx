@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { Montserrat } from "next/font/google";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,6 +30,9 @@ export default function RootLayout({
           <Navigation />
           {children}
           <Footer />
+          <GoogleAnalytics
+            gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!}
+          />
         </Providers>
       </body>
     </html>
