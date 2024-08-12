@@ -18,14 +18,18 @@ export default function HomeContent() {
         title="Real-time Analytics"
         description="Get instant insights into your newsletter's performance. Track opens, clicks, and subscriber growth in real-time."
         imageUrl={
-          isDarkMode ? "/screenshot-dark-4.png" : "/screenshot-light-4.png"
+          isDarkMode
+            ? "mockup/screenshot-dark-4.png"
+            : "mockup/screenshot-light-4.png"
         }
       />
       <FeatureSection
         title="Multi-Newsletter Management"
         description="Manage multiple newsletters from a single dashboard. Compare performance and streamline your workflow."
         imageUrl={
-          isDarkMode ? "/screenshot-dark-3.png" : "/screenshot-light-3.png"
+          isDarkMode
+            ? "mockup/screenshot-dark-3.png"
+            : "mockup/screenshot-light-3.png"
         }
         isReversed
       />
@@ -33,7 +37,9 @@ export default function HomeContent() {
         title="HomeScreen Widget"
         description="Keep your key metrics at your fingertips with our customizable HomeScreen widget."
         imageUrl={
-          isDarkMode ? "/screenshot-dark-1.png" : "/screenshot-light-1.png"
+          isDarkMode
+            ? "mockup/screenshot-dark-1.png"
+            : "mockup/screenshot-light-1.png"
         }
       />
       <Testimonials />

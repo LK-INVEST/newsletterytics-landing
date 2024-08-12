@@ -359,57 +359,41 @@ const Hero: React.FC = () => {
                 left="0"
                 right="0"
                 bottom="0"
-                borderRadius="30px"
+                borderRadius="60px"
                 overflow="hidden"
                 transform="perspective(1000px) rotateY(-10deg) rotateX(5deg)"
                 boxShadow="0 0 15px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.3)"
-                _before={{
-                  content: '""',
-                  position: "absolute",
-                  top: "-10%",
-                  left: "-10%",
-                  right: "-10%",
-                  bottom: "-10%",
-                  background:
-                    "linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0))",
-                  transform: "rotate(-45deg)",
-                  pointerEvents: "none",
-                  zIndex: 1,
-                }}
-                _after={{
-                  content: '""',
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  boxShadow:
-                    "0 0 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(255, 255, 255, 0.7)",
-                  opacity: 0,
-                  transition: "opacity 0.3s ease-in-out",
-                  zIndex: 2,
-                }}
-                transition="box-shadow 0.3s ease-in-out"
-                _hover={{
-                  boxShadow:
-                    "0 0 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(255, 255, 255, 0.7)",
-                }}
+                bg={useColorModeValue("gray.900", "gray.900")}
               >
-                <AnimatePresence initial={false} custom={currentImageIndex}>
-                  <MotionImage
-                    key={currentImageIndex}
-                    src={images[currentImageIndex]}
-                    alt={`Featured image ${currentImageIndex + 1}`}
-                    objectFit="cover"
-                    position="absolute"
-                    custom={currentImageIndex}
-                    variants={getVariants(currentImageIndex)}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                  />
-                </AnimatePresence>
+                <Box
+                  position="absolute"
+                  top="10px"
+                  left="10px"
+                  right="10px"
+                  bottom="10px"
+                  borderRadius="50px"
+                  overflow="hidden"
+                >
+                  <AnimatePresence initial={false} custom={currentImageIndex}>
+                    <MotionImage
+                      key={currentImageIndex}
+                      src={`slider/${images[currentImageIndex]}`}
+                      alt={`Featured image ${currentImageIndex + 1}`}
+                      objectFit="cover"
+                      position="absolute"
+                      top="0"
+                      left="0"
+                      width="100%"
+                      height="100%"
+                      custom={currentImageIndex}
+                      variants={getVariants(currentImageIndex)}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                    />
+                  </AnimatePresence>
+                </Box>
               </Box>
             </MotionBox>
           </Flex>

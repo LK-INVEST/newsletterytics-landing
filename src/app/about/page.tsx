@@ -121,7 +121,7 @@ export default function About() {
               <AnimatePresence initial={false} custom={currentImageIndex}>
                 <MotionImage
                   key={currentImageIndex}
-                  src={images[currentImageIndex]}
+                  src={`slider/${images[currentImageIndex]}`}
                   alt={`Featured image ${currentImageIndex + 1}`}
                   objectFit="contain"
                   position="absolute"

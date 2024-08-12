@@ -66,13 +66,13 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             viewport={{ once: true }}
             flex={1}
             textAlign="center"
+            bg="transparent"
           >
             <Image
               src={imageUrl}
               alt={title}
               maxW="300px"
               mx="auto"
-              boxShadow={useColorModeValue("lg", "dark-lg")}
               borderRadius="lg"
             />
           </MotionBox>
