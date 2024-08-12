@@ -107,34 +107,54 @@ export default function About() {
               </MotionText>
             </MotionBox>
             <MotionBox
-              flex={1}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
               position="relative"
-              width="100%"
-              height="800px"
-              borderRadius="lg"
-              overflow="hidden"
-              // boxShadow="2xl"
+              width={{ base: "100%", sm: "340px" }}
+              height={{ base: "720px", sm: "680px" }}
+              mt={{ base: 8, md: 0 }}
+              mx="auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
             >
-              <AnimatePresence initial={false} custom={currentImageIndex}>
-                <MotionImage
-                  key={currentImageIndex}
-                  src={`slider/${images[currentImageIndex]}`}
-                  alt={`Featured image ${currentImageIndex + 1}`}
-                  objectFit="contain"
+              <Box
+                position="absolute"
+                top="0"
+                left="0"
+                right="0"
+                bottom="0"
+                borderRadius="60px"
+                overflow="hidden"
+                boxShadow="0 0 15px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.3)"
+                bg={useColorModeValue("gray.200", "gray.800")}
+              >
+                <Box
                   position="absolute"
-                  width="100%"
-                  height="100%"
-                  custom={currentImageIndex}
-                  variants={getVariants(currentImageIndex)}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                />
-              </AnimatePresence>
+                  top="12px"
+                  left="12px"
+                  right="12px"
+                  bottom="12px"
+                  borderRadius="50px"
+                  overflow="hidden"
+                >
+                  <AnimatePresence initial={false} custom={currentImageIndex}>
+                    <MotionImage
+                      key={currentImageIndex}
+                      src={`slider/${images[currentImageIndex]}`}
+                      alt={`Featured image ${currentImageIndex + 1}`}
+                      objectFit="contain"
+                      position="absolute"
+                      top="0"
+                      left="0"
+                      custom={currentImageIndex}
+                      variants={getVariants(currentImageIndex)}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                    />
+                  </AnimatePresence>
+                </Box>
+              </Box>
             </MotionBox>
           </Flex>
 
