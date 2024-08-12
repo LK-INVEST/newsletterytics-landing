@@ -197,7 +197,7 @@ export default function About() {
             />
           </VStack>
 
-          {/* <MotionHeading
+          <MotionHeading
             as="h2"
             size="xl"
             mt={8}
@@ -239,7 +239,7 @@ export default function About() {
                 avatar="avatar4.jpeg"
               />
             </SimpleGrid>
-          </VStack> */}
+          </VStack>
         </VStack>
       </Container>
     </Box>

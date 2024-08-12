@@ -3,7 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { email } = await req.json();
+  const { email, name } = await req.json();
   const apiString = `${process.env.NEXT_PUBLIC_BEEHIIV_API_URL}/publications/${process.env.NEXT_PUBLIC_BEEHIIV_PUBLICATION_ID}/subscriptions`;
 
   try {
@@ -15,6 +15,12 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         email,
+        custom_fields: [
+          {
+            name: "Name",
+            value: name,
+          },
+        ],
         reactivate_existing: true,
         send_welcome_email: true,
       }),

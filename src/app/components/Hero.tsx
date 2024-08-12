@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, name }),
       });
 
       if (response.ok) {
