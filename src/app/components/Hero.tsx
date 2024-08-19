@@ -296,6 +296,19 @@ const Hero: React.FC = () => {
                   Join Waitlist
                 </Button>
               </MotionBox>
+              <a
+                href="https://www.producthunt.com/posts/newsletterytics?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-newsletterytics"
+                target="_blank"
+              >
+                <Image
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=481123&theme=light"
+                  alt="Newsletterytics - Track&#0032;your&#0032;Beehiiv&#0039;s&#0032;newsletter&#0032;stats&#0032;on&#0032;the&#0032;go&#0046; | Product Hunt"
+                  w="250px"
+                  h="55px"
+                  width="250"
+                  height="54"
+                />
+              </a>
               <AnimatePresence>
                 {submitStatus === "success" && (
                   <MotionText
