@@ -19,8 +19,8 @@ export default function HomeContent() {
         description="Get instant insights into your newsletter's performance. Track opens, clicks, and subscriber growth in real-time."
         imageUrl={
           isDarkMode
-            ? "mockup/screenshot-dark-4.png"
-            : "mockup/screenshot-light-4.png"
+            ? "mockup/screenshot-dark-3.png"
+            : "mockup/screenshot-light-3.png"
         }
       />
       <FeatureSection
@@ -28,8 +28,8 @@ export default function HomeContent() {
         description="Manage multiple newsletters from a single dashboard. Compare performance and streamline your workflow."
         imageUrl={
           isDarkMode
-            ? "mockup/screenshot-dark-3.png"
-            : "mockup/screenshot-light-3.png"
+            ? "mockup/screenshot-dark-4.png"
+            : "mockup/screenshot-light-4.png"
         }
         isReversed
       />
