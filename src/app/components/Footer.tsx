@@ -32,6 +32,13 @@ const Footer: React.FC = () => {
         <Text>© 2024 Newsletterytics by Paweł Karniej</Text>
         <Stack direction="row" spacing={6} align="center">
           <Link
+            as="a"
+            href="https://insigh.to/b/newsletterytics"
+            color={useColorModeValue("brand.500", "brand.300")}
+          >
+            Suggest a feature
+          </Link>
+          <Link
             href="/privacypolicy"
             color={useColorModeValue("brand.500", "brand.300")}
           >
