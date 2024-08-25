@@ -14,6 +14,9 @@ import {
   useColorModeValue,
   SimpleGrid,
   Avatar,
+  Button,
+  Input,
+  useToast,
 } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "../components/Navigation";
@@ -23,6 +26,7 @@ const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 const MotionImage = motion(Image);
+const MotionInput = motion(Input);
 
 export default function About() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -55,6 +59,55 @@ export default function About() {
     center: { x: 0, opacity: 1 },
     exit: { x: "-100%", opacity: 0 },
   });
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const toast = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, name }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "🔥You're in",
+          description: "Check your inbox for the good stuff!",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        setEmail("");
+        setName("");
+      } else {
+        throw new Error("Subscription failed");
+      }
+    } catch (error) {
+      console.error("Subscription error occurred");
+      toast({
+        title: "Subscription failed",
+        description:
+          "There was an error signing up for the list. Please try again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Box
@@ -196,6 +249,120 @@ export default function About() {
               delay={1.4}
             />
           </VStack>
+          <MotionBox
+            as="form"
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            width="100%"
+            maxWidth={{ base: "100%", sm: "400px" }}
+          >
+            <MotionInput
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              mb={4}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+              bg={useColorModeValue("white", "gray.800")}
+              color={useColorModeValue("gray.800", "white")}
+              borderColor={useColorModeValue("gray.300", "gray.600")}
+              _hover={{
+                borderColor: useColorModeValue("brand.500", "brand.300"),
+              }}
+              _focus={{
+                borderColor: useColorModeValue("brand.500", "brand.300"),
+                boxShadow: "outline",
+              }}
+            />
+            <MotionInput
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              mb={6}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              bg={useColorModeValue("white", "gray.800")}
+              color={useColorModeValue("gray.800", "white")}
+              borderColor={useColorModeValue("gray.300", "gray.600")}
+              _hover={{
+                borderColor: useColorModeValue("brand.500", "brand.300"),
+              }}
+              _focus={{
+                borderColor: useColorModeValue("brand.500", "brand.300"),
+                boxShadow: "outline",
+              }}
+            />
+
+            <Button
+              variant="solid"
+              width="100%"
+              type="submit"
+              isLoading={isSubmitting}
+              colorScheme="brand"
+              fontWeight="bold"
+              transition="all 0.2s"
+              cursor="pointer"
+              bg={useColorModeValue("brand.500", "brand.500")}
+              color={useColorModeValue("white", "white")}
+              _hover={{
+                transform: "scale(1.05)",
+                animation: "pulseAndShake 0.5s",
+              }}
+              _dark={{
+                _hover: {
+                  bg: "brand.600",
+                  animation: "pulseAndShake 0.5s",
+                },
+              }}
+              sx={{
+                "@keyframes pulseAndShake": {
+                  "0%, 100%": { transform: "scale(1.05)" },
+                  "25%": { transform: "scale(1.05) rotate(1deg)" },
+                  "50%": { transform: "scale(1.05) rotate(-1deg)" },
+                  "75%": { transform: "scale(1.05) rotate(1deg)" },
+                },
+              }}
+            >
+              Receive News & Updates
+            </Button>
+          </MotionBox>
+          <AnimatePresence>
+            {submitStatus === "success" && (
+              <MotionText
+                color="green.500"
+                fontWeight="bold"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3 }}
+              >
+                🔥 You&apos;re in. Check your inbox for the good stuff!
+              </MotionText>
+            )}
+            {submitStatus === "error" && (
+              <MotionText
+                color="red.500"
+                fontWeight="bold"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3 }}
+              >
+                An error occurred. Please try again.
+              </MotionText>
+            )}
+          </AnimatePresence>
 
           {/* <MotionHeading
             as="h2"
