@@ -70,15 +70,16 @@ const Testimonials: React.FC = () => {
         </Heading>
         <Flex justify="center" wrap="wrap" gap={8}>
           <Testimonial
-            content="very cool"
+            content="Newsletterytics is a convenient way to keep track of your beehiiv newsletter stats when you're on the go. I love the homescreen widgets!"
             author="Ej from beehiiv"
             avatar="https://pbs.twimg.com/profile_images/1722741086249218048/zAMRNTk7_400x400.jpg"
           />
-          {/* <Testimonial
-            content="I love how easy it is to track my newsletter's performance on the go. Great app!"
-            author="John Smith"
-            avatar="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80"
+          <Testimonial
+            content="Been writing on beehiiv for 3 years. So dope!!!"
+            author="Jason Levin from Product Hunt"
+            avatar="https://pbs.twimg.com/profile_images/1542564325415591936/FFeuatbF_400x400.jpg"
           />
+          {/*
           <Testimonial
             content="The real-time stats have helped me make data-driven decisions to grow my audience."
             author="Emily Johnson"

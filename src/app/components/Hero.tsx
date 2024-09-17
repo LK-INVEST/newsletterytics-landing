@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % 4;
+        const nextIndex = (prevIndex + 1) % 8;
         setDirection(nextIndex === 0 ? -1 : 1); // Change direction when looping back to the first image
         return nextIndex;
       });
@@ -59,12 +59,20 @@ const Hero: React.FC = () => {
         "screenshot-dark-2.png",
         "screenshot-dark-3.png",
         "screenshot-dark-4.png",
+        "screenshot-dark-5.png",
+        "screenshot-dark-6.png",
+        "screenshot-dark-7.png",
+        "screenshot-dark-8.png",
       ]
     : [
         "screenshot-light-1.png",
         "screenshot-light-2.png",
         "screenshot-light-3.png",
         "screenshot-light-4.png",
+        "screenshot-light-5.png",
+        "screenshot-light-6.png",
+        "screenshot-light-7.png",
+        "screenshot-light-8.png",
       ];
 
   const getVariants = (index: number) => {
@@ -93,8 +101,36 @@ const Hero: React.FC = () => {
           center: { x: 0, opacity: 1 },
           exit: { y: "100%", opacity: 0 },
         };
+      case 4: // screenshot-5 to screenshot-6 (right to left)
+        return {
+          enter: { x: "100%", opacity: 0 },
+          center: { x: 0, opacity: 1 },
+          exit: { x: "-100%", opacity: 0 },
+        };
+      case 5: // screenshot-6 to screenshot-7 (right to left)
+        return {
+          enter: { x: "100%", opacity: 0 },
+          center: { x: 0, opacity: 1 },
+          exit: { x: "-100%", opacity: 0 },
+        };
+      case 6: // screenshot-7 to screenshot-8 (right to left)
+        return {
+          enter: { x: "100%", opacity: 0 },
+          center: { x: 0, opacity: 1 },
+          exit: { x: "-100%", opacity: 0 },
+        };
+      case 7: // screenshot-8 to screenshot-1 (right to left)
+        return {
+          enter: { x: "100%", opacity: 0 },
+          center: { x: 0, opacity: 1 },
+          exit: { x: "-100%", opacity: 0 },
+        };
       default:
-        return {};
+        return {
+          enter: { x: "100%", opacity: 0 },
+          center: { x: 0, opacity: 1 },
+          exit: { y: "100%", opacity: 0 },
+        };
     }
   };
 
