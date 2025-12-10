@@ -15,7 +15,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { motion, useMotionValue, AnimatePresence } from "framer-motion";
-import { FaApple } from "react-icons/fa";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
@@ -193,6 +193,7 @@ const Hero: React.FC = () => {
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
+                gap={3}
                 width="100%"
                 maxWidth={{ base: "100%", sm: "400px" }}
               >
@@ -206,7 +207,6 @@ const Hero: React.FC = () => {
                   width="100%"
                   colorScheme="brand"
                   fontWeight="bold"
-                  my={2}
                   bg={useColorModeValue("black", "white")}
                   color={useColorModeValue("white", "black")}
                   _hover={{
@@ -215,6 +215,26 @@ const Hero: React.FC = () => {
                   size="lg"
                 >
                   Download on the App Store
+                </Button>
+                <Button
+                  as="a"
+                  href="https://play.google.com/store/apps/details?id=com.karniej.newsletterstats"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  leftIcon={<FaGooglePlay />}
+                  variant="outline"
+                  width="100%"
+                  colorScheme="brand"
+                  fontWeight="bold"
+                  bg={useColorModeValue("white", "gray.800")}
+                  color={useColorModeValue("gray.900", "white")}
+                  borderColor={useColorModeValue("gray.200", "gray.700")}
+                  _hover={{
+                    bg: useColorModeValue("gray.50", "gray.700"),
+                  }}
+                  size="lg"
+                >
+                  Get it on Google Play
                 </Button>
               </MotionBox>
             </VStack>
