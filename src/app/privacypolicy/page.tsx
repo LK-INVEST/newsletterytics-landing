@@ -191,7 +191,7 @@ const PrivacyPolicy = () => {
               communications.
               <br />• Analytics: You may opt out of analytics data collection
               through your device settings or by contacting us at
-              contact@pawelkarniej.com.
+              contact@lkinvest-partners.fr.
             </Text>
           </MotionBox>
 
@@ -230,7 +230,7 @@ const PrivacyPolicy = () => {
               If you have any questions or concerns about this Privacy Policy or
               our data practices, please contact us at:
               <br />
-              contact@pawelkarniej.com
+              contact@lkinvest-partners.fr
             </Text>
           </MotionBox>
         </VStack>
