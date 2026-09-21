@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
           </Link>
           <IconButton
             as="a"
-            href="https://x.com/pawelkarniej"
+            href="https://x.com/"
             aria-label="X (Twitter) Profile"
             icon={<FaXTwitter />}
             size="sm"
