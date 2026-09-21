@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Text>© 2024 Newsletterytics by Paweł Karniej</Text>
+        <Text>© 2024 Newsletterytics</Text>
         <Stack direction="row" spacing={6} align="center">
           <Link
             as="a"
