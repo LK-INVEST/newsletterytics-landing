@@ -46,9 +46,9 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            I&apos;d love to hear from you! Whether you have a question about
+            We&apos;d love to hear from you! Whether you have a question about
             the app, want to suggest a new feature, or just want to say hello,
-            I&apos;m all ears.
+            We are all ears.
           </MotionText>
           <MotionText
             fontSize="xl"
@@ -57,10 +57,10 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            Please feel free to reach out to me at:
+            Please feel free to reach out to us at:
           </MotionText>
           <MotionLink
-            href="mailto:contact@pawelkarniej.com"
+            href="mailto:contact@lkinvest-partners.fr"
             fontSize="2xl"
             fontWeight="bold"
             color={useColorModeValue("brand.600", "brand.300")}
@@ -68,7 +68,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            contact@pawelkarniej.com
+            contact@lkinvest-partners.fr
           </MotionLink>
         </VStack>
       </Container>
