@@ -185,7 +185,7 @@ const Hero: React.FC = () => {
                 maxW="2xl"
                 textTransform="uppercase"
               >
-                YOUR BEEHIIV NEWSLETTER STATS, RIGHT IN YOUR POCKET
+                YOUR NEWSLETTER ANALYTICS, RIGHT IN YOUR POCKET
               </MotionText>
               <MotionBox
                 initial={{ opacity: 0, y: 20 }}
